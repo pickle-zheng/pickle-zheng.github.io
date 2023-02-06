@@ -1,0 +1,28 @@
+<html>
+  <head>
+    <title>pixel</title>
+    <script>
+      window.addEventListener(
+        "message",
+        function (event) {
+          console.log(event);
+          var origin = event.origin || event.originalEvent.origin;
+          if (origin !== "https://dovetail-parent.tiiny.site") {
+            return;
+          }
+          if (
+            typeof event.data == "object" &&
+            event.data.call == "sendAnonymousId"
+          ) {
+            alert("aid received");
+            console.log(event.data);
+          }
+        },
+        false
+      );
+    </script>
+  </head>
+  <body>
+    <p>pixel</p>
+  </body>
+</html>

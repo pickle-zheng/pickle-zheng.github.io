@@ -7,6 +7,7 @@
         function (event) {
           console.log(event);
           var origin = event.origin || event.originalEvent.origin;
+          console.log(origin);
           if (origin !== "https://dovetail-parent.tiiny.site") {
             return;
           }

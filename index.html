@@ -19,10 +19,10 @@
             console.log(event.data);
             const aid = event.data.value;
             console.log("aid", aid);
-            localStorage.setItem("anonymousId", aid);
+            window.localStorage.setItem("anonymousId", aid);
             console.log(
               "localStorage value",
-              localStorage.getItem("anonymousId")
+              window.localStorage.getItem("anonymousId")
             );
             document.cookie = `anonymousId=${aid}`;
             console.log(document.cookie);

@@ -17,6 +17,8 @@
           ) {
             alert("aid received");
             console.log(event.data);
+            const aid = event.data.value;
+            localStorage.setItem("anonymousId", aid);
           }
         },
         false

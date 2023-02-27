@@ -28,26 +28,25 @@
             );
             document.cookie = `anonymousId=${aid}`;
             console.log(document.cookie);
+            pixelDom.innerHTML = "Incoming: " + aid;
           }
         },
         false
       );
 
       buttonDom.addEventListener("click", function () {
-        if (frame != null) {
-          frame.contentWindow.postMessage(
-            {
-              call: "sendSessionToken",
-              value: "SESSION_TOKEN"
-            },
-            "https://resilient-stroopwafel-d15a1a.netlify.app"
-          );
-        }
+        parent.postMessage(
+          {
+            call: "sendSessionToken",
+            value: "SESSION_TOKEN"
+          },
+          "https://resilient-stroopwafel-d15a1a.netlify.app"
+        );
       });
     </script>
   </head>
   <body>
-    <p id="pixel">pixel 2</p>
-    <button id="sendBack">Send back</button>
+    <p id="pixel">pixel 3</p>
+    <button id="sendBack">Send SESSION_TOKEN to parent</button>
   </body>
 </html>

@@ -2,7 +2,7 @@
   <head>
     <title>pixel</title>
     <script>
-      document.addEventListener("load", () => {
+      document.onload = () => {
         const pixelDom = document.getElementById("pixel");
         const buttonDom = document.getElementById("sendBack");
 
@@ -36,6 +36,7 @@
         );
 
         buttonDom.addEventListener("click", function () {
+          conoole.log("parent", parent);
           parent.postMessage(
             {
               call: "sendSessionToken",
@@ -44,11 +45,11 @@
             "https://resilient-stroopwafel-d15a1a.netlify.app"
           );
         });
-      });
+      };
     </script>
   </head>
   <body>
-    <p id="pixel">pixel 4</p>
-    <button id="sendBack">Send SESSION_TOKEN to parent</button>
+    <p id="pixel">pixel 5 s</p>
+    <button id="sendBack">Send token to parent</button>
   </body>
 </html>

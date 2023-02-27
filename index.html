@@ -2,51 +2,53 @@
   <head>
     <title>pixel</title>
     <script>
-      const pixelDom = document.getElementById("pixel");
-      const buttonDom = document.getElementById("sendBack");
+      document.addEventListener("load", () => {
+        const pixelDom = document.getElementById("pixel");
+        const buttonDom = document.getElementById("sendBack");
 
-      window.addEventListener(
-        "message",
-        function (event) {
-          console.log(event);
-          var origin = event.origin || event.originalEvent.origin;
-          console.log(origin);
-          // if (origin !== "https://melodious-hamster-fbd1e3.netlify.app") {
-          //   return;
-          // }
-          if (
-            typeof event.data == "object" &&
-            event.data.call == "sendAnonymousId"
-          ) {
-            console.log(event.data);
-            const aid = event.data.value;
-            console.log("aid", aid);
-            window.localStorage.setItem("anonymousId", aid);
-            console.log(
-              "localStorage value",
-              window.localStorage.getItem("anonymousId")
-            );
-            document.cookie = `anonymousId=${aid}`;
-            console.log(document.cookie);
-            pixelDom.innerHTML = "Incoming: " + aid;
-          }
-        },
-        false
-      );
-
-      buttonDom.addEventListener("click", function () {
-        parent.postMessage(
-          {
-            call: "sendSessionToken",
-            value: "SESSION_TOKEN"
+        window.addEventListener(
+          "message",
+          function (event) {
+            console.log(event);
+            var origin = event.origin || event.originalEvent.origin;
+            console.log(origin);
+            // if (origin !== "https://melodious-hamster-fbd1e3.netlify.app") {
+            //   return;
+            // }
+            if (
+              typeof event.data == "object" &&
+              event.data.call == "sendAnonymousId"
+            ) {
+              console.log(event.data);
+              const aid = event.data.value;
+              console.log("aid", aid);
+              window.localStorage.setItem("anonymousId", aid);
+              console.log(
+                "localStorage value",
+                window.localStorage.getItem("anonymousId")
+              );
+              document.cookie = `anonymousId=${aid}`;
+              console.log(document.cookie);
+              pixelDom.innerHTML = "Incoming: " + aid;
+            }
           },
-          "https://resilient-stroopwafel-d15a1a.netlify.app"
+          false
         );
+
+        buttonDom.addEventListener("click", function () {
+          parent.postMessage(
+            {
+              call: "sendSessionToken",
+              value: "SESSION_TOKEN"
+            },
+            "https://resilient-stroopwafel-d15a1a.netlify.app"
+          );
+        });
       });
     </script>
   </head>
   <body>
-    <p id="pixel">pixel 3</p>
+    <p id="pixel">pixel 4</p>
     <button id="sendBack">Send SESSION_TOKEN to parent</button>
   </body>
 </html>

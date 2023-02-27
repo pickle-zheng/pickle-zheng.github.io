@@ -2,20 +2,21 @@
   <head>
     <title>pixel</title>
     <script>
+      const pixelDom = document.getElementById("pixel");
+
       window.addEventListener(
         "message",
         function (event) {
           console.log(event);
           var origin = event.origin || event.originalEvent.origin;
           console.log(origin);
-          if (origin !== "https://dovetail-parent.tiiny.site") {
-            return;
-          }
+          // if (origin !== "https://dovetail-parent.tiiny.site") {
+          //   return;
+          // }
           if (
             typeof event.data == "object" &&
             event.data.call == "sendAnonymousId"
           ) {
-            alert("aid received");
             console.log(event.data);
             const aid = event.data.value;
             console.log("aid", aid);
@@ -33,6 +34,6 @@
     </script>
   </head>
   <body>
-    <p>pixel from another domain</p>
+    <p id="pixel">pixel</p>
   </body>
 </html>

@@ -3,6 +3,7 @@
     <title>pixel</title>
     <script>
       const pixelDom = document.getElementById("pixel");
+      const buttonDom = document.getElementById("button");
 
       window.addEventListener(
         "message",
@@ -10,7 +11,7 @@
           console.log(event);
           var origin = event.origin || event.originalEvent.origin;
           console.log(origin);
-          // if (origin !== "https://dovetail-parent.tiiny.site") {
+          // if (origin !== "https://melodious-hamster-fbd1e3.netlify.app") {
           //   return;
           // }
           if (
@@ -31,9 +32,22 @@
         },
         false
       );
+
+      buttonDom.addEventListener("click", function () {
+        if (frame != null) {
+          frame.contentWindow.postMessage(
+            {
+              call: "sendSessionToken",
+              value: "SESSION_TOKEN"
+            },
+            "https://resilient-stroopwafel-d15a1a.netlify.app"
+          );
+        }
+      });
     </script>
   </head>
   <body>
     <p id="pixel">pixel</p>
+    <button id="sendBack">Send back</button>
   </body>
 </html>
